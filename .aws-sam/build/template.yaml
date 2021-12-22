@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: "\"askininan.com\" Portfolio-Website backend IaC \n"
+Resources:
+  Counter:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: Counter
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Events:
+        Counter:
+          Type: Api
+          Properties:
+            Path: /get
+            Method: get
+      Environment:
+        Variables:
+          databaseName:
+            Ref: ResumeCounterTable
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: ResumeCounterTable
+  ResumeCounterTable:
+    Type: AWS::Serverless::SimpleTable
+Outputs:
+  CounterApi:
+    Description: API Gateway endpoint URL for Prod stage for Counter function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/get

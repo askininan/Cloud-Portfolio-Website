@@ -26,7 +26,7 @@ Resources:
   S3WebsiteBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
-      
+      Bucket: !Ref S3WebsiteBucket
       PolicyDocument:
         Statement:
           - Sid: PublicReadOAI
@@ -39,8 +39,11 @@ Resources:
               - - "arn:aws:s3:::"
                 - !Ref S3WebsiteBucket
                 - /*
-      Bucket: !Ref S3WebsiteBucket
       
+
+
+####### CloudFront - Route53 #######
+
   CloudFrontOAI:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
     Properties:

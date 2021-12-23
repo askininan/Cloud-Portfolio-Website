@@ -11,6 +11,7 @@ Parameters:
 
 Resources:
 
+
 ####### Static - Website #######
 
 # S3 bucket for storing static content
@@ -41,7 +42,6 @@ Resources:
                 - /*
       
 
-
 ####### CloudFront - Route53 #######
 
   CloudFrontOAI:
@@ -49,6 +49,38 @@ Resources:
     Properties:
       CloudFrontOriginAccessIdentityConfig:
         Comment: "Serverless website in S3"
+
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !Ref DomainName
+          - !Sub "www.${DomainName}"
+        Origins:
+          - DomainName: !GetAtt S3WebsiteBucket.DomainName
+            Id: s3BucketOrigin
+            S3BucketOriginConfig:
+              OriginAccessIdentity:
+                - !Sub: 'origin-access-identity/cloudfront/${CloudFrontOAI}'
+        DefaultCacheBehavior:
+          Compress: 'true'
+          ViewerProtocolPolicy: redirect-to-https
+          TargetOriginId: s3-website
+          DefaultTTL: 30
+          MinTTL: 1
+          MaxTTL: 86400
+          ForwardedValues:
+            QueryString: false
+        Enabled: "true"
+        DefaultRootObject: index.html
+        HttpVersion: http2
+        ViewerCertificate:
+          AcmCertificateArn: arn:aws:acm:us-east-1:<<ACCOUNT_NR>>:certificate/<<CERT_NR>>
+          SslSupportMethod: sni-only
+
+
+
 
 
 ####### Lambda - API #######

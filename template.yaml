@@ -69,12 +69,14 @@ Resources:
           TargetOriginId: s3-website
           DefaultTTL: 30
           MinTTL: 1
-          MaxTTL: 86400
+          MaxTTL: 14400
+          Compress: true
           ForwardedValues:
             QueryString: false
         Enabled: "true"
         DefaultRootObject: index.html
         HttpVersion: http2
+        PriceClass: PriceClass_100
         ViewerCertificate:
           AcmCertificateArn: arn:aws:acm:us-east-1:<<ACCOUNT_NR>>:certificate/<<CERT_NR>>
           SslSupportMethod: sni-only

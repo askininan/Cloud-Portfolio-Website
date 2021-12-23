@@ -3,7 +3,52 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   "askininan.com" Portfolio-Website backend IaC 
 
+Parameters:
+  DomainName:
+    Type: String
+    Default: askininan.com
+
+
 Resources:
+
+####### Static - Website #######
+
+# S3 bucket for storing static content
+  S3WebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref 'DomainName'
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+
+# S3 bucket policy - permission on S3 bucket that allows access only through CloudFront OAI.
+  S3WebsiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      
+      PolicyDocument:
+        Statement:
+          - Sid: PublicReadOAI
+            Effect: Allow
+            Principal:
+              AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOAI}"
+            Action: s3:GetObject
+            Resource: !Join
+              - ""
+              - - "arn:aws:s3:::"
+                - !Ref S3WebsiteBucket
+                - /*
+      Bucket: !Ref S3WebsiteBucket
+      
+  CloudFrontOAI:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: "Serverless website in S3"
+
+
+####### Lambda - API #######
 
 # Lambda function 
   Counter:
@@ -24,6 +69,9 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ResumeCounterTable
+
+
+####### NOSQL Table #######
 
 # DynamoDB table for counter data
   ResumeCounterTable:

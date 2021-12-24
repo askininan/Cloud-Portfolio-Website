@@ -54,35 +54,35 @@ Resources:
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:
-        Aliases:
-          - !Ref DomainName
-          - !Sub "www.${DomainName}"
         Origins:
           - DomainName: !GetAtt S3WebsiteBucket.DomainName
             Id: s3BucketOrigin
             S3BucketOriginConfig:
               OriginAccessIdentity:
                 - !Sub: 'origin-access-identity/cloudfront/${CloudFrontOAI}'
+        Enabled: "true"
+        Comment:
+        DefaultRootObject: index.html 
+        Aliases:
+          - !Ref DomainName
+          - !Sub "www.${DomainName}"
         DefaultCacheBehavior:
           Compress: 'true'
           ViewerProtocolPolicy: redirect-to-https
           TargetOriginId: s3-website
-          DefaultTTL: 30
+          DefaultTTL: 40
           MinTTL: 1
-          MaxTTL: 14400
+          MaxTTL: 86400
           Compress: true
           ForwardedValues:
             QueryString: false
-        Enabled: "true"
-        DefaultRootObject: index.html
+            Cookies:
+              Forward: none
         HttpVersion: http2
         PriceClass: PriceClass_100
         ViewerCertificate:
           AcmCertificateArn: arn:aws:acm:us-east-1:<<ACCOUNT_NR>>:certificate/<<CERT_NR>>
           SslSupportMethod: sni-only
-
-
-
 
 
 ####### Lambda - API #######

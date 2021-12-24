@@ -66,7 +66,7 @@ Resources:
         DefaultRootObject: index.html 
         Aliases:
           - askininan.com
-          - !Sub "www.${DomainName}"
+          - www.askininan.com
         DefaultCacheBehavior:
           Compress: 'true'
           ViewerProtocolPolicy: redirect-to-https

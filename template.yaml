@@ -6,7 +6,7 @@ Description: >
 Parameters:
   DomainName:
     Type: String
-    Default: askininan.com
+    Default: 'askininan.com'
 
 
 Resources:
@@ -18,7 +18,7 @@ Resources:
   S3WebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Ref 'DomainName'
+      BucketName: !Ref DomainName
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
@@ -48,8 +48,11 @@ Resources:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
     Properties:
       CloudFrontOriginAccessIdentityConfig:
-        Comment: "Serverless website in S3"
+        Comment: "Serverless website in S3 CloudFront OAI"
 
+# CloudFront Distribution
+# Template reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-cloudfront.html#scenario-cloudfront-s3origin
+# Recommended reading: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html#alternate-domain-names-requirements
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
@@ -57,19 +60,17 @@ Resources:
         Origins:
           - DomainName: !GetAtt S3WebsiteBucket.DomainName
             Id: s3BucketOrigin
-            S3BucketOriginConfig:
-              OriginAccessIdentity:
-                - !Sub: 'origin-access-identity/cloudfront/${CloudFrontOAI}'
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOAI}"
         Enabled: "true"
-        Comment:
         DefaultRootObject: index.html 
         Aliases:
-          - !Ref DomainName
+          - askininan.com
           - !Sub "www.${DomainName}"
         DefaultCacheBehavior:
           Compress: 'true'
           ViewerProtocolPolicy: redirect-to-https
-          TargetOriginId: s3-website
+          TargetOriginId: s3BucketOrigin
           DefaultTTL: 40
           MinTTL: 1
           MaxTTL: 86400
@@ -81,13 +82,28 @@ Resources:
         HttpVersion: http2
         PriceClass: PriceClass_100
         ViewerCertificate:
-          AcmCertificateArn: arn:aws:acm:us-east-1:<<ACCOUNT_NR>>:certificate/<<CERT_NR>>
-          SslSupportMethod: sni-only
+          AcmCertificateArn: arn:aws:acm:us-east-1:526450518584:certificate/55033313-9dd8-4400-ab9a-71479d0fc57d
+          SslSupportMethod: sni-only  #Cannot deploy AcmCert without SslSupportMethod specified
+
+
+# Route53, creating A record into already created hosted zone for "askininan.com" and targeting it to cloudFront alias
+# Templateeference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-route53-recordsetgroup.html
+  MyRoute53Record:
+    Type: "AWS::Route53::RecordSetGroup"
+    Properties:
+      HostedZoneId: Z07970082EGHK518NHF8D
+      RecordSets:
+        - Name: askininan.com
+          Type: A
+          AliasTarget:
+            HostedZoneId: Z2FDTNDATAQYW2 #All CloudFront Distributions live in the same (this one) hosted zone
+            DNSName: !GetAtt CloudFrontDistribution.DomainName
+
 
 
 ####### Lambda - API #######
 
-# Lambda function 
+# Lambda function resource referencing VisitorCounter function in app.py
   Counter:
     Type: AWS::Serverless::Function
     Properties:

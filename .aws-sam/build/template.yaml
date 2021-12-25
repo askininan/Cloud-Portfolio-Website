@@ -106,6 +106,21 @@ Resources:
       - DynamoDBCrudPolicy:
           TableName:
             Ref: ResumeCounterTable
+  APIUsagePlan:
+    Type: AWS::ApiGateway::UsagePlan
+    Properties:
+      ApiStages:
+      - ApiId:
+          Ref: ServerlessRestApi
+        Stage: Prod
+      Description: Usage Plan for rate limiting
+      Quota:
+        Limit: 2000
+        Period: MONTH
+      Throttle:
+        BurstLimit: 50
+        RateLimit: 30
+      UsagePlanName: VisitorCounterThrottle
   ResumeCounterTable:
     Type: AWS::Serverless::SimpleTable
 Outputs:

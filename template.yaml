@@ -130,12 +130,16 @@ Resources:
     Type: AWS::ApiGateway::UsagePlan
     Properties:
       ApiStages:
-        - Id: !Ref ServerlessRestApi
+        - ApiId: !Ref ServerlessRestApi
           Stage: Prod
-        Throttle:
-          BurstLimit: 50
-          RateLimit: 30
-        UsagePlanName: VisitorCounterThrottle
+      Description: Usage Plan for rate limiting
+      Quota:
+        Limit: 2000
+        Period: MONTH
+      Throttle:
+        BurstLimit: 50
+        RateLimit: 30
+      UsagePlanName: VisitorCounterThrottle
 
 
 

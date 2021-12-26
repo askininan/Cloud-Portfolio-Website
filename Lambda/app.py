@@ -25,18 +25,16 @@ def lambda_handler(event, context):
     responseBody = json.dumps({"Visitor Count": int(float(ddbResponse["Attributes"]["VisitorCount"]))})
 
     # Create api response object
-    apiResponse = {
-        "isBase64Encoded": False,
+    response = {
         "statusCode": 200,
-        "body": responseBody,
         "headers": {
-        "Access-Control-Allow-Headers" : "*",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "*",
-        "Access-Control-Allow-Methods": "GET,OPTIONS",
-        "Content-Type": "application/json" 
-        }
+            "Access-Control-Allow-Headers" : "Content-Type,X-Amz-Date,Authorization,X-Api-Key,x-requested-with",
+            "Access-Control-Allow-Origin": "*",
+            'Access-Control-Allow-Credentials': true,
+            "Access-Control-Allow-Methods": "GET,OPTIONS", 
+            "Content-Type"  :   'application/json' 
+        },
+        "body": responseBody
     }
-
     # Return api response object
-    return apiResponse
+    return response

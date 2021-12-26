@@ -123,7 +123,8 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref ResumeCounterTable
 
-# I came up to a blog post by Chris Nagy that explains how he got denial-of-wallet attack on his cloud-portfolio project and decided to add rate limiting to API Gateway: https://not-blog.heyitschris.com/the-story-of-my-possibly-denial-of-wallet-attack-on-aws-serverless-ckddlds1u011oxvs1d873fhsy
+
+# As Chris Nagy explains how he got denial-of-wallet attack on his portfolio website, API Gateway throttling is necessary to rate limit get requests: https://not-blog.heyitschris.com/the-story-of-my-possibly-denial-of-wallet-attack-on-aws-serverless-ckddlds1u011oxvs1d873fhsy
 # API Gateway - Usage Plan - API Throttling
 
   APIUsagePlan:
@@ -137,10 +138,11 @@ Resources:
         Limit: 2000
         Period: MONTH
       Throttle:
-        BurstLimit: 50
+        BurstLimit: 60
         RateLimit: 30
       UsagePlanName: VisitorCounterThrottle
 
+  
 
 
 ####### NOSQL Table #######

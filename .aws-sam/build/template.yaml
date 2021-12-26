@@ -118,7 +118,7 @@ Resources:
         Limit: 2000
         Period: MONTH
       Throttle:
-        BurstLimit: 50
+        BurstLimit: 60
         RateLimit: 30
       UsagePlanName: VisitorCounterThrottle
   ResumeCounterTable:

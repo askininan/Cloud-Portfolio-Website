@@ -26,15 +26,15 @@ def lambda_handler(event, context):
 
     # Create api response object
     response = {
-        "statusCode": 200,
-        "headers": {
-            "Access-Control-Allow-Headers" : "Content-Type,X-Amz-Date,Authorization,X-Api-Key,x-requested-with",
-            "Access-Control-Allow-Origin": "*",
-            'Access-Control-Allow-Credentials': true,
-            "Access-Control-Allow-Methods": "GET,OPTIONS", 
-            "Content-Type"  :   'application/json' 
-        },
-        "body": responseBody
+        "isBase64Encoded": False,
+        'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,x-requested-with',
+            'Access-Control-Allow-Credentials': '*',
+            'Access-Control-Allow-Methods': 'GET,OPTIONS', 
+            },
+        'body': responseBody
     }
     # Return api response object
     return response

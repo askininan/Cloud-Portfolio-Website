@@ -5,6 +5,9 @@ Parameters:
   DomainName:
     Type: String
     Default: askininan.com
+Globals:
+  Function:
+    Timeout: 4
 Resources:
   S3WebsiteBucket:
     Type: AWS::S3::Bucket
@@ -14,6 +17,15 @@ Resources:
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
+      CorsConfiguration:
+        CorsRules:
+        - AllowedMethods:
+          - GET
+          - HEAD
+          AllowedOrigins:
+          - '*'
+          AllowedHeaders:
+          - '*'
   S3WebsiteBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:

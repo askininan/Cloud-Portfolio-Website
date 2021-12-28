@@ -88,10 +88,6 @@
             <div class="about-me-wrapper">
 
                 <h3>About Me</h3>
-
-                <p>
-                    I am an industrial engineer with no coding background.
-                </p>
                 <p>
                     It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                     It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -103,19 +99,17 @@
         <section class="counter-section">
             <div class="counter-container">
                 <h5>Visitor Counter</h5>
-                <span id="value">0</span>
+                <p id='counterBody'></p>
                 <script>
-                    fetch("https://g5sq6q8jh2.execute-api.eu-central-1.amazonaws.com/Prod")
-                        .then(response => {
-                            return response.json(); 
-                        })
-                        .then(visitorCount =>{
-                            console.log(visitorCount);
-                            document.getElementById('body').innerHTML = visitorCount;
+                    fetch("https://g5sq6q8jh2.execute-api.eu-central-1.amazonaws.com/Prod/get")
+                        .then(response => response.json())
+                        .then(data =>{
+                            document.getElementById('counterBody').innerHTML = data 
+                    // dataDisplay = JSON.stringify(data);         
+                    console.log(data);
                         });
                   </script>
             </div>
         </section>  
     </body>
 </html>
-

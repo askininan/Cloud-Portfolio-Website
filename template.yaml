@@ -8,6 +8,9 @@ Parameters:
     Type: String
     Default: 'askininan.com'
 
+Globals:
+  Function:
+    Timeout: 4
 
 Resources:
 
@@ -22,6 +25,16 @@ Resources:
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
+      CorsConfiguration:
+        CorsRules:
+          - 
+            AllowedMethods: 
+              - GET
+              - HEAD
+            AllowedOrigins: 
+              - "*"
+            AllowedHeaders: 
+              - "*"
 
 # S3 bucket policy - permission on S3 bucket that allows access only through CloudFront OAI.
   S3WebsiteBucketPolicy:

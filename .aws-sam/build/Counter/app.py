@@ -22,7 +22,7 @@ def lambda_handler(event, context):
     )
 
     # Format dynamodb response into variable
-    responseBody = json.dumps({"Visitor Count": int(float(ddbResponse["Attributes"]["VisitorCount"]))})
+    responseBody = json.dumps(int(float(ddbResponse["Attributes"]["VisitorCount"])))
 
     # Create api response object
     response = {
@@ -31,8 +31,8 @@ def lambda_handler(event, context):
         'headers': {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,x-requested-with',
-            'Access-Control-Allow-Credentials': '*',
             'Access-Control-Allow-Methods': 'GET,OPTIONS', 
+            'Access-Control-Allow-Credentials': '*',
             },
         'body': responseBody
     }

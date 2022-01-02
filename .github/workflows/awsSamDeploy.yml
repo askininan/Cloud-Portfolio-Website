@@ -24,7 +24,7 @@
 #    See the documentation for each action used below for the recommended IAM policies for this IAM user,
 #    and best practices on handling the access key credentials.
 
-name: Deploy to Amazon ECS
+name: Deploy AWS SAM Stack
 
 on:
   push:
@@ -36,10 +36,7 @@ env:
   ECR_REPOSITORY: MY_ECR_REPOSITORY           # set this to your Amazon ECR repository name
   ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
   ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
-                                               # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: MY_CONTAINER_NAME           # set this to the name of the container in the
-                                               # containerDefinitions section of your task definition
+
 
 jobs:
   deploy:
@@ -57,10 +54,20 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
+    
+    - name: Install Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
 
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r Lambda/requirements.txt
+        pip install moto boto3
+
+    - name: Unittest visitor counter Lambda
+      run: python Lambda/PythonCodeTest.py
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image

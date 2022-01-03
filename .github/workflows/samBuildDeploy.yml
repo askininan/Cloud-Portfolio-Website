@@ -40,4 +40,4 @@ jobs:
 # sam build 
       - run: sam build --use-container -t template.yaml --debug
 # sam deploy
-      - run: sam deploy -t template.yaml --config-file samconfig.toml --debug --no-fail-on-empty-changeset
+      - run: sam deploy --no-fail-on-empty-changeset

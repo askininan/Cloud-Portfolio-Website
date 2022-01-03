@@ -16,7 +16,6 @@ jobs:
       - uses: aws-actions/setup-sam@v1
       - uses: aws-actions/configure-aws-credentials@v1
         with:
-          python-version: 3.8
           aws-access-key-id: ${{ secrets.AWS_ASKININAN_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_ASKININAN_SECRET_ACCESS_KEY }}
           aws-region: eu-cental-1

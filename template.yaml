@@ -17,10 +17,9 @@ Resources:
 
 ####### Static - Website #######
 
-  # s3Test:
-  #   Type: AWS::S3::Bucket
-  #   Properties:
-  #     Bucketname: TestBucket31324fdsfa
+  S3Test:
+    Type: AWS::S3::Bucket
+
 # S3 bucket for storing static content
   S3WebsiteBucket:
     Type: AWS::S3::Bucket

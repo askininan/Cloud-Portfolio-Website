@@ -17,8 +17,8 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v1
         with:
           python-version: 3.8
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ASKININAN_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ASKININAN_SECRET_ACCESS_KEY }}
           aws-region: eu-cental-1
       
 
@@ -31,12 +31,12 @@ jobs:
         pip install -r Lambda/requirements.txt
         
 
-# Run Unit tests
-    - name: Unit test Lambda visitor counter funtion
-          run: python Lambda/UnitTest.py
+# # Run Unit tests
+#     - name: Unit test Lambda visitor counter funtion
+#           run: python Lambda/UnitTest.py
 
 
 # sam build 
       - run: sam build --use-container -t template.yaml --debug
 # sam deploy
-      - run: sam deploy -t template.yaml --no-confirm-changeset --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM
+      - run: sam deploy -t template.yaml --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM

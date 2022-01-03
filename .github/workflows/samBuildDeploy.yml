@@ -15,20 +15,20 @@ jobs:
       - uses: actions/setup-python@v2
       - uses: aws-actions/setup-sam@v1
       - uses: aws-actions/configure-aws-credentials@v1
-        with:
-          python-version: 3.8
-          aws-access-key-id: ${{ secrets.AWS_ASKININAN_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_ASKININAN_SECRET_ACCESS_KEY }}
-          aws-region: eu-cental-1
+      with:
+        python-version: 3.8
+        aws-access-key-id: ${{ secrets.AWS_ASKININAN_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_ASKININAN_SECRET_ACCESS_KEY }}
+        aws-region: eu-cental-1
       
 
 # Install env dependencies
-      name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install boto3
-        pip install moto[ec2,s3,all]
-        pip install -r Lambda/requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install boto3
+          pip install moto[ec2,s3,all]
+          pip install -r Lambda/requirements.txt
         
 
 # # Run Unit tests

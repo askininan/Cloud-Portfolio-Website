@@ -7,18 +7,22 @@ import unittest
 
 REGION = 'eu-central-1'
 
+os.environ['databaseName'] = 'testing'
 
 class TestLambdaDDB(unittest.TestCase):
     @mock_dynamodb2
     def test_lambda_handler(self):
 
+    
     # Create DynamoDB boto3 object
-        dynamodb_c = boto3.resource('dynamodb', 'eu-central-1')
-        
+        dynamodb_c = boto3.client('dynamodb', 'eu-central-1')
+    
+    # Set dynamodb table name variable from env
+        ddbTableName = os.environ['databaseName']     
         
     # Create mock DynamoDB table
         dynamodb_c.create_table(
-            TableName = "ddbTableName",
+            TableName = ddbTableName,
             BillingMode = 'PAY_PER_REQUEST',
             AttributeDefinitions = [{'AttributeName': 'id', 'AttributeType': 'S'}],
             KeySchema = [{'AttributeName': 'id', 'KeyType': 'HASH'}],

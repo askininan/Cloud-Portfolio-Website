@@ -2,6 +2,7 @@ import json
 import boto3
 import os
 
+
 # Initialize dynamodb boto3 object
 dynamodb = boto3.resource('dynamodb')
 # Set dynamodb table name variable from env
@@ -26,7 +27,6 @@ def lambda_handler(event, context):
 
     # Create api response object
     response = {
-        "isBase64Encoded": False,
         'statusCode': 200,
         'headers': {
             'Access-Control-Allow-Origin': '*',

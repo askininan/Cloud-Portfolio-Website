@@ -276,12 +276,13 @@ body{
 .cert-section{
     padding-top: 5em;
     padding-bottom: 3em;
-    background-color:#222E37;
+    background-color:#372234;
     color: azure;
 }
 
 .cert-container{
-    width: 600px;
+    background-color: rgb(0, 81, 255);
+    width: auto;
     margin: 0 auto;
 }
 

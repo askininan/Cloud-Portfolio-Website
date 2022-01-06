@@ -6,7 +6,7 @@ import os
 # Initialize dynamodb boto3 object
 dynamodb = boto3.resource('dynamodb')
 # Set dynamodb table name variable from env
-ddbTableName = os.environ['databaseName']
+ddbTableName = os.environ.get('DB_NAME')
 table = dynamodb.Table(ddbTableName)
 
 def lambda_handler(event, context):

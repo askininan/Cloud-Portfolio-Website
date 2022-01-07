@@ -1,6 +1,7 @@
-/Images
+/Front-End/images
 /.aws-sam
 .DS_Store
 .txt
 __pycache__
 .env
+.vscode

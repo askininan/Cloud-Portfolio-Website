@@ -2755,14 +2755,10 @@ input, select, textarea {
 		}
 
 			#header.alt > * {
-				-moz-transition: opacity 3s ease;
-				-webkit-transition: opacity 3s ease;
-				-ms-transition: opacity 3s ease;
-				transition: opacity 3s ease;
-				-moz-transition-delay: 0.5s;
-				-webkit-transition-delay: 0.5s;
-				-ms-transition-delay: 0.5s;
-				transition-delay: 0.5s;
+				-moz-transition: opacity 1s ease;
+				-webkit-transition: opacity 1s ease;
+				-ms-transition: opacity 1s ease;
+				transition: opacity 1s ease;
 				opacity: 1;
 			}
 
@@ -3391,7 +3387,6 @@ input, select, textarea {
 }
 
 .contact-info{
-	
 	margin-left: -10em;
 	padding-top: 5em;
     display: flex;
@@ -3407,7 +3402,6 @@ input, select, textarea {
 }
 
 .con-text{
-	
     font-weight: 400;
     display: flex;
     margin-left: 20px;
@@ -3482,23 +3476,66 @@ input, select, textarea {
 
 
 .skill-wrapper{
-
     margin-top: 2em;
     margin-bottom: 2em;
 }
 
 .skills-honorable-mentions-wrapper{
+	height: 2em;
+	display: grid;
+	grid-template-columns: repeat(5, 8em);
+	column-gap: 1em;
+	row-gap: 1em;
     margin-top: 1em;
-    display: flex;
-    gap: 1em;
+	margin: 0 auto;
 }
 
-
-.skill-trunk{
-    background-color: rgb(66, 178, 223);
-    width: fit-content;
+.skill-trunk1, .skill-trunk2, .skill-trunk3, .skill-trunk4, .skill-trunk5{
+	font-weight: 380;
+    background-color: rgb(88, 199, 243);
+	width: 8em;
+	text-align: center;
+	max-height: 2em;
     padding: 3px 20px;
     border-radius: 15px;
+}
+@media screen and (max-width: 1680px) {
+	.skills-honorable-mentions-wrapper{
+		grid-template-columns: repeat(5, 9em);
+	}
+	.skill-trunk1, .skill-trunk2, .skill-trunk3, .skill-trunk4, .skill-trunk5{
+		width: 9em;
+	}
+}
+
+@media screen and (max-width: 980px) {
+	.skills-honorable-mentions-wrapper{
+		justify-content: center;
+		grid-template-columns: repeat(4, 9em);
+		height: 5em;
+	}
+}
+
+@media screen and (max-width: 777px) {
+	.skills-honorable-mentions-wrapper{
+		grid-template-columns: repeat(3, 9em);
+		height: 5em;
+	}
+}
+
+@media screen and (max-width: 590px) {
+	.skills-honorable-mentions-wrapper{
+		grid-template-columns: repeat(2, 9em);
+		height: 8em;
+	}
+}
+
+@media screen and (max-width: 310px) {
+	.skills-honorable-mentions-wrapper{
+		background-color: chartreuse;
+		grid-template-columns: repeat(1, 9em);
+		height: 14em;
+	}
 }
 
 /* ---------------------PROJECTS SECTION--------------------- */
@@ -3513,7 +3550,6 @@ input, select, textarea {
 
 .counter-container{
 	display: flex;
-	
 	padding-top: 10px;
 	margin: auto;
 	max-width:fit-content;
@@ -3521,8 +3557,6 @@ input, select, textarea {
 }
 
 .counter-text{
-	
-	
 	font-size: 1.3em;
 	align-items: center;
 	height: 34px;
@@ -3531,7 +3565,6 @@ input, select, textarea {
 }
 
 .counter-body{
-	
 	width: fit-content;
 	text-align: left;
 	font-weight: 1000;
@@ -3542,10 +3575,14 @@ input, select, textarea {
 .th-visitor{
 	margin-top: 2px;
 	height: fit-content;
-	
 	font-size: 1.1em;
 	text-align: left;
 	width: 90px;
+}
+@media screen and (max-width: 1680px) {
+	.th-visitor{
+		margin-top: 1px;
+	}
 }
 @media screen and (max-width: 1680px) {
 	.counter-text{

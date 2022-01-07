@@ -2620,7 +2620,7 @@ input, select, textarea {
 
 			.features {
 				width: 100%;
-				margin: 0 0 2em 0;
+				margin: 0 0 0 -1em;
 			}
 
 				.features li {
@@ -3391,6 +3391,7 @@ input, select, textarea {
 }
 
 .contact-info{
+	
 	margin-left: -10em;
 	padding-top: 5em;
     display: flex;
@@ -3467,9 +3468,9 @@ input, select, textarea {
     .contact-container{
         flex-direction: column;
     }
-    .contact-info, .Form{
-		align-items: center;
-		padding-right: 2em;
+	
+	.Form{
+		margin: auto;
         width: 100%;
     }
 }
@@ -3511,124 +3512,56 @@ input, select, textarea {
 /* ---------------------COUNTER CSS--------------------- */
 
 .counter-container{
+	display: flex;
+	
 	padding-top: 10px;
 	margin: auto;
-	text-align: center;
-	width: 220px;
-	height: 50px;
+	max-width:fit-content;
+	height: 44px;
 }
 
 .counter-text{
-
+	
+	
 	font-size: 1.3em;
 	align-items: center;
 	height: 34px;
-	width: 75px;
+	width: 80px;
     float: left;
 }
 
 .counter-body{
-
+	
+	width: fit-content;
+	text-align: left;
 	font-weight: 1000;
 	font-size: 1.1em;
-	width: 36px;
-	margin-left: 82px;
-
+	height: fit-content;
 }
 
 .th-visitor{
-
+	margin-top: 2px;
+	height: fit-content;
+	
 	font-size: 1.1em;
 	text-align: left;
-	margin-top: -39px;
-	float: right;
-	width: 100px;
+	width: 90px;
 }
 @media screen and (max-width: 1680px) {
-	.counter-container{
-
-		margin: auto;
-		text-align: center;
-		width: 206px;
-		height: 50px;
-	}
-	.th-visitor{
-		font-size: 1.1em;
-		text-align: left;
-		margin-top: -33px;
-		float: right;
-		width: 100px;
-	}
-	.counter-body{
-
-		font-weight: 1000;
-		font-size: 1.1em;
-		width: 36px;
-		margin-left: 70px;
+	.counter-text{
+		width: 65px;
 	}
 }
 @media screen and (max-width: 1280px) {
-
-	.counter-container{
-		margin: auto;
-		text-align: center;
-		width: 166px;
-		height: 50px;
-	}
-
 	.counter-text{
-		font-size: 1.3em;
-		align-items: center;
-		height: 34px;
-		width: 65px;
-		float: left;
+		width: 55px;
 	}
-
-	.counter-body{
-		font-weight: 1000;
-		font-size: 1.1em;
-		width: 33px;
-		margin-left: 60px;
-	
-	}
-	.th-visitor{
-		font-size: 1.1em;
-		text-align: left;
-		margin-top: -27.8px;
-		float: right;
-		width: 73px;
-	}
-	
 }
-
 @media screen and (max-width: 360px) {
-
-
-	.counter-container{
-		margin: auto;
-		text-align: center;
-		width: 158px;
-		height: 50px;
-	}
 	.counter-text{
-		margin-top: 0.7px;
-		font-size: 1.3em;
-		align-items: center;
-		height: 34px;
-		width: 60px;
-		float: left;
-	}
-	.counter-body{
-		font-weight: 1000;
-		font-size: 1.1em;
-		width: 33px;
-		margin-left: 52px;
-	}
-	.th-visitor{
-		margin-top: -25px;
+		width: 50px;
 	}
 }
-
 /* Footer */
 
 	#footer {

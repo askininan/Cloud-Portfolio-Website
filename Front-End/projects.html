@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Aşkın İnan Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<div class="profile-general">
+							<div class="profile-content">
+								<img id="profile-pic" alt="Aşkın İnan" src="images/Aşkın-Portfolio.jpeg">
+								<h1 class="profile-name">
+									Aşkın<br>İnan
+								</h1>
+							</div>
+							<div class="profile-title">
+								<h3 id="title-features">Cloud Engineer</h3>
+								<div class="profile-slogan">
+									<p>I develop cloud projects on Amazon Web Services</p>
+								</div>
+								<ul class="icons">
+									<li><a href="https://github.com/askininan" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+									<li><a href="https://www.linkedin.com/in/askin-inan/" class="icon brands fa-linkedin alt"><span class="label">Linkedin</span></a></li>
+								</ul>
+							</div>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+                        <!-- Content -->
+                        <section id="projects" class="main">
+                            <div class="spotlight">
+                                <div class="content">
+                                    <header class="major">
+                                        <h2>Projects</h2>
+                                    </header>
+                                    <ul class="features">
+                                        <li>
+                                            <a href="project1.html"><img class="image-thumbnail" alt="project2" src="images/web-under-cons..jpg"></a>
+                                            <h4><a href="project1.html">Cloud Resume Challenge - Part 1</a></h4>
+                                            <p>Deploying a static and secure website with AWS SAM as</p>
+                                        </li>
+                                        <li>
+                                            <img class="image-thumbnail" alt="project2" src="images/web-under-cons..jpg">
+                                            <h4>Cloud Resume Challenge - Part 2</h4>
+                                            <p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat. Verify this certificate here.</p>
+                                        </li>
+                                        <li>
+                                            <img class="image-thumbnail" alt="project3" src="images/web-under-cons..jpg">
+                                            <h4>Cloud Resume Challenge - Part 3</h4>
+                                            <p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat. Verify this certificate here.</p>
+                                        </li>
+                                        <li>
+                                            <img class="image-thumbnail" alt="project4" src="images/web-under-cons..jpg">
+                                            <h4>Cloud Resume Challenge - Part 4</h4>
+                                            <p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat. Verify this certificate here.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+			
+					<!-- Contact Page -->
+						<section id="cta" class="main special">
+							<header class="major">
+								<h2>Contact Me</h2>
+								<p>I'm interested in new career opportunities. If you have any enquiries, feel free to contact me.</p>
+							</header>
+							<div class="contact-page">
+								<!-- Intro of contact page -->
+								<!-- Contact Info Frames -->
+								<div class="contact-container">
+									<div class="contact-info">
+										<div class="con-box">
+											<section>
+												<dl class="alt">
+													<dt>E-mail:</dt>
+													<dd><a href="#">askin.inan@outlook.com</a></dd>
+													<dt>Location:</dt>
+													<dd>Istanbul, Turkey</dd>
+												</dl>
+												<ul class="icons">
+													<li><a href="https://github.com/askininan" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+													<li><a href="https://www.linkedin.com/in/askin-inan/" class="icon brands fa-linkedin alt"><span class="label">Linkedin</span></a></li>
+												</ul>
+											</section>
+										</div>
+									</div>
+									<div class=Form>
+										<form id="form" onsubmit="return false">
+											<h2>Send a Message</h2>
+											<div class="input-box">
+												<input type="text" name="name" placeholder="Full Name" required>
+												<input type="text" name="email" placeholder="E-mail" required>
+												<textarea name="message" required placeholder="Write your message..."></textarea>
+											</div>
+											<div class="send-button">
+												<button type="submit" value="Send">Send</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</section>
+			</div>		
+			<!--Counter Section-->
+						<section class="counter-section">
+							<div class="counter-container">
+								<div class="counter-text"><h5>You are</h5></div>
+								<div id='counterBody' class="counter-body"></div>
+									<script>
+										fetch("https://g4u5x2sk18.execute-api.eu-central-1.amazonaws.com/Prod/get")
+											.then(response => response.json())
+											.then(data =>{
+												document.getElementById('counterBody').innerHTML = data        
+										console.log(data);
+											});
+									</script>
+									<h5 class="th-visitor">th visitor.</h5>
+							</div>
+						</section>  
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Askin Inan 2022</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="https://smtpjs.com/v3/smtp.js"></script>
+			<script src="assets/js/form.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

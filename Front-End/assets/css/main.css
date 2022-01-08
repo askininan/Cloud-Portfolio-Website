@@ -2253,7 +2253,6 @@ input, select, textarea {
 	dl dt {
 		color: #ffffff;
 	}
-
 /* Actions */
 
 	ul.actions {
@@ -2466,93 +2465,6 @@ input, select, textarea {
 		background-color: rgba(255, 255, 255, 0.35);
 	}
 
-/* Table */
-
-	.table-wrapper {
-		-webkit-overflow-scrolling: touch;
-		overflow-x: auto;
-	}
-
-	table {
-		margin: 0 0 2em 0;
-		width: 100%;
-	}
-
-		table tbody tr {
-			border: solid 1px;
-			border-left: 0;
-			border-right: 0;
-		}
-
-		table td {
-			padding: 0.75em 0.75em;
-		}
-
-		table th {
-			font-size: 0.9em;
-			font-weight: 400;
-			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
-		}
-
-		table thead {
-			border-bottom: solid 2px;
-		}
-
-		table tfoot {
-			border-top: solid 2px;
-		}
-
-		table.alt {
-			border-collapse: separate;
-		}
-
-			table.alt tbody tr td {
-				border: solid 1px;
-				border-left-width: 0;
-				border-top-width: 0;
-			}
-
-				table.alt tbody tr td:first-child {
-					border-left-width: 1px;
-				}
-
-			table.alt tbody tr:first-child td {
-				border-top-width: 1px;
-			}
-
-			table.alt thead {
-				border-bottom: 0;
-			}
-
-			table.alt tfoot {
-				border-top: 0;
-			}
-
-	table tbody tr {
-		border-color: rgba(255, 255, 255, 0.35);
-	}
-
-		table tbody tr:nth-child(2n + 1) {
-			background-color: rgba(255, 255, 255, 0.075);
-		}
-
-	table th {
-		color: #ffffff;
-	}
-
-	table thead {
-		border-bottom-color: rgba(255, 255, 255, 0.35);
-	}
-
-	table tfoot {
-		border-top-color: rgba(255, 255, 255, 0.35);
-	}
-
-	table.alt tbody tr td {
-		border-color: rgba(255, 255, 255, 0.35);
-	}
-
 /* Features */
 
 	.features {
@@ -2561,14 +2473,14 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		-moz-flex-wrap: wrap;
-		-webkit-flex-wrap: wrap;
-		-ms-flex-wrap: wrap;
-		flex-wrap: wrap;
 		-moz-justify-content: center;
 		-webkit-justify-content: center;
 		-ms-justify-content: center;
 		justify-content: center;
+		-moz-flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
 		width: calc(100% +2em);
 		margin: 0 0 3em -2em;
 		padding: 0;
@@ -2576,6 +2488,7 @@ input, select, textarea {
 	}
 
 		.features li {
+			font-weight: 350;
 			max-width: 14em;
 			width: calc(33.33333% - 2em);
 			margin-left: 3em;
@@ -2583,10 +2496,37 @@ input, select, textarea {
 			padding: 0;
 		}
 
+
+		.project-features{
+			font-weight: 380;
+			margin-left: 8em;
+			margin-right: 8em;
+		}
+
+		.project-features h4{
+			font-weight: normal;
+		}
+
+		.features .project-features li{
+			background-color:#7ec3ee;
+			width: 400em;
+		}
+		
+		.in-project-image{
+			margin-top: 2em;
+			margin-bottom: 2em;
+		}
+
 		.features li h3 {
+			font-weight: 800;
+			font-size: 24px;
 			min-height: 3em;
 			vertical-align: central;
-			font-weight: 900;
+		}
+		.features li h4 {
+			font-weight: 800;
+			font-size: 24px;
+			vertical-align: central;
 		}
 
 		.cert-icon{
@@ -2606,6 +2546,13 @@ input, select, textarea {
 			}
 
 		@media screen and (max-width: 980px) {
+			.features {
+
+				-moz-justify-content: center;
+				-webkit-justify-content: center;
+				-ms-justify-content: center;
+				justify-content: center;
+			}
 
 			.features li {
 				width: calc(50% - 2em);
@@ -3481,9 +3428,10 @@ input, select, textarea {
 }
 
 .skills-honorable-mentions-wrapper{
+	
 	height: 2em;
 	display: grid;
-	grid-template-columns: repeat(5, 8em);
+	grid-template-columns: repeat(5, 7em);
 	column-gap: 1em;
 	row-gap: 1em;
     margin-top: 1em;
@@ -3491,9 +3439,10 @@ input, select, textarea {
 }
 
 .skill-trunk1, .skill-trunk2, .skill-trunk3, .skill-trunk4, .skill-trunk5{
+	font-size: 17px;
 	font-weight: 380;
     background-color: rgb(88, 199, 243);
-	width: 8em;
+	width: 9em;
 	text-align: center;
 	max-height: 2em;
     padding: 3px 20px;
@@ -3541,9 +3490,13 @@ input, select, textarea {
 
 .image-thumbnail{
     max-width: 13.5em;
-	border-radius: 5%;
+	border-radius: 3%;
 }
+.project-code{
+	background-color:rgb(211, 211, 211);
+	font-weight: 700;
 
+}
 
 /* ---------------------COUNTER CSS--------------------- */
 

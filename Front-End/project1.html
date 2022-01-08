@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Aşkın İnan Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<div class="profile-general">
+							<div class="profile-content">
+								<img id="profile-pic" alt="Aşkın İnan" src="images/Aşkın-Portfolio.jpeg">
+								<h1 class="profile-name">
+									Aşkın<br>İnan
+								</h1>
+							</div>
+							<div class="profile-title">
+								<h3 id="title-features">Cloud Engineer</h3>
+								<div class="profile-slogan">
+									<p>I develop cloud projects on Amazon Web Services</p>
+								</div>
+								<ul class="icons">
+									<li><a href="https://github.com/askininan" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+									<li><a href="https://www.linkedin.com/in/askin-inan/" class="icon brands fa-linkedin alt"><span class="label">Linkedin</span></a></li>
+								</ul>
+							</div>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+                        <!-- Content -->
+                        <section id="projects" class="main">
+                            <div class="spotlight">
+                                <div class="content">
+                                    <header class="major">
+                                        <h2>Cloud Resume Challenge - Part 1</h2>
+                                    </header>
+                                        <div class="project-features">
+                                            <p>Through my cloud journey, I followed Gwyneth Peña-Siguenza’s learn-to-cloud guide to plan my learning time spans and to discover insightful resources for my study. On phase-3 where the guide recommends to take The Cloud Resume Challenge by Forrest Brazeal. At this point I already had AWS Cloud Practitioner certificate and was looking for a challenging project to immense my hands-on skills.<br>
+
+                                                <br>The challenge calls for deploying a static website on AWS, utilizing various services for deployment. In addition, you need to build a Lambda function for counting visitors with inclusion of tests on your code; as well as doing all in a pipeline.
+                                                
+                                                I will divide project phases into three parts as front-end, back-end and CI / CD.<br>
+                                                
+                                                
+                                                
+                                                <br><h4>PART 1 - Front-End - Building and Deploying a Static and Secure Website</h4>
+                                                
+                                                For front-end part, I downloaded a free template from HTML5up for a more professional design, which still required numerous modifications. All in all, my website prototype was ready after two days of work for initial deployment.
+                                                
+                                                I was familiar with hosting a static website on S3 and other services that are required to register and host a domain with a TLS/SSL certificate for secure connection. However, the challenge requires you to use a tool for infrastructure as code, such as AWS AWS Serverless Application Model (SAM) or Terraform. I wanted it to be fully AWS so I decided to go with SAM, which is already integrated with AWS environment.<br> 
+                                                
+                                                <br>AWS provides official guides on deploying an S3 with SAM, and SAM presents you an interactive walk-trough on deployment. It also requires much shorter code comparing to CloudFormation, since all IAM roles are created automatically.
+                                                
+                                                Once you understand how service properties work, it is not a challenging task to deploy the architecture you want with AWS SAM. However, especially considering CloudFront properties there are a lot lines of code that you need to figure out the right way of writing.<br>
+                                                <img class="in-project-image" src="images/CloudFrontDistroSS.png">
+                                                <h4>Building Steps</h4>
+                                                <ul>
+                                                    <li class="project-list">
+                                                        After launching S3 and CloudFront with the required properties, uploaded my website code to S3 by using AWS CLI command; <br>
+                                                        <span class="project-code">aws s3 sync local_file s3_bucket</span><br> 
+                                                        and deployed the code by <span class="project-code">sam build —user-container && sam deploy</span>, in which fetching a Docker container with preinstalled necessities for SAM build.
+                                                    </li>
+                                                    <li class="project-list">
+                                                        Added CloudFront Origin Access Identity in the equation to front my S3 bucket, that allows my bucket to stay private.
+                                                    </li>
+                                                    <li class="project-list">
+                                                        After being able to host a public facing website on HTTP access, as the challenge instructs; registered a domain name under Route 53 and added an A record with the domain name.
+                                                    </li>
+                                                    <li class="project-list">
+                                                        Requested a TLS/SSL certification for HTTPS access on AWS Certificate Manager and added the certificate ARN into my CloudFront distribution.
+                                                    </li>
+                                                </ul>    
+                                                
+                                                <h4>Final Thoughts on Part 1</h4>
+                                                Over this part, I have accomplished to deploy a website leveraging IaC tool AWS SAM, and faced several challenging occasions while trying to resolve exact 
+                                                specifications required for each service. I’ve spent good amount of time to figure out the right AliasTarget for my CloudFront distribution to associate with my Route 53 record, 
+                                                that is until I read that every distribution was in the same general AWS hosted zone.<br>
+                                                
+                                                <br>Getting an SSL certificate working was a challenge all by itself, which should be an easy process at first glance. Firstly, I had issues with validating the certificate because I had previously 
+                                                deleted my original DNS record for my registered domain name, so I had to find out how the validation process really works. After that, I found out that to use an ACM certificate with CloudFront, you cannot issue a certificate in any other region than us-east-1. <br>
+                                                <br>With the lessons learned, that was the end of Part One. Please, check Part Two for the process of creating a functioning visitor counter with Lambda and API Gateway.</p>
+                                </div>
+                            </div>
+                        </section>
+			
+					<!-- Contact Page -->
+						<section id="cta" class="main special">
+							<header class="major">
+								<h2>Contact Me</h2>
+								<p>I'm interested in new career opportunities. If you have any enquiries, feel free to contact me.</p>
+							</header>
+							<div class="contact-page">
+								<!-- Intro of contact page -->
+								<!-- Contact Info Frames -->
+								<div class="contact-container">
+									<div class="contact-info">
+										<div class="con-box">
+											<section>
+												<dl class="alt">
+													<dt>E-mail:</dt>
+													<dd><a href="#">askin.inan@outlook.com</a></dd>
+													<dt>Location:</dt>
+													<dd>Istanbul, Turkey</dd>
+												</dl>
+												<ul class="icons">
+													<li><a href="https://github.com/askininan" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+													<li><a href="https://www.linkedin.com/in/askin-inan/" class="icon brands fa-linkedin alt"><span class="label">Linkedin</span></a></li>
+												</ul>
+											</section>
+										</div>
+									</div>
+									<div class=Form>
+										<form id="form" onsubmit="return false">
+											<h2>Send a Message</h2>
+											<div class="input-box">
+												<input type="text" name="name" placeholder="Full Name" required>
+												<input type="text" name="email" placeholder="E-mail" required>
+												<textarea name="message" required placeholder="Write your message..."></textarea>
+											</div>
+											<div class="send-button">
+												<button type="submit" value="Send">Send</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</section>
+			</div>		
+			<!--Counter Section-->
+						<section class="counter-section">
+							<div class="counter-container">
+								<div class="counter-text"><h5>You are</h5></div>
+								<div id='counterBody' class="counter-body"></div>
+									<script>
+										fetch("https://g4u5x2sk18.execute-api.eu-central-1.amazonaws.com/Prod/get")
+											.then(response => response.json())
+											.then(data =>{
+												document.getElementById('counterBody').innerHTML = data        
+										console.log(data);
+											});
+									</script>
+									<h5 class="th-visitor">th visitor.</h5>
+							</div>
+						</section>  
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Askin Inan 2022</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="https://smtpjs.com/v3/smtp.js"></script>
+			<script src="assets/js/form.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

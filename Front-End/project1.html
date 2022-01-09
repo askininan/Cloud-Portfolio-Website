@@ -11,14 +11,14 @@
 
 		<!-- Wrapper -->
 			<div id="wrapper">
-
-				<!-- Header -->
-					<header id="header" class="alt">
-						<div class="profile-general">
-							<div class="profile-content">
-							</div>
-					</header>
-
+                <!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="projects.html">Projects</a></li>
+							<li><a href="#cta">Contact</a></li>
+						</ul>
+					</nav>
 				<!-- Main -->
 					<div id="main">
                         <!-- Content -->
@@ -26,15 +26,16 @@
                             <div class="spotlight">
                                 <div class="content">
                                     <header class="major">
-                                        <h2>Cloud Resume Challenge - Part 1</h2>
+                                        <h2>Cloud Resume Challenge - Part 1 - Front-End</h2>
                                     </header>
                                         <div class="project-features">
+                                            
                                             <p>Through my cloud journey, I followed Gwyneth Peña-Siguenza’s learn-to-cloud guide to plan my learning time spans and to discover insightful resources for my study. On phase-3 where the guide recommends to take The Cloud Resume Challenge by Forrest Brazeal. At this point I already had AWS Cloud Practitioner certificate and was looking for a challenging project to immense my hands-on skills.<br>
 
                                                 <br>The challenge calls for deploying a static website on AWS, utilizing various services for deployment. In addition, you need to build a Lambda function for counting visitors with inclusion of tests on your code; as well as doing all in a pipeline.
                                                 
                                                 I will divide project phases into three parts as front-end, back-end and CI / CD.<br>
-                                                
+                                                <img class="in-project-image" alt="project1" src="images/Portfolio-Whole-Diagram.png">
                                                 
                                                 
                                                 <br><h4>PART 1 - Front-End - Building and Deploying a Static and Secure Website</h4>
@@ -46,8 +47,9 @@
                                                 <br>AWS provides official guides on deploying an S3 with SAM, and SAM presents you an interactive walk-trough on deployment. It also requires much shorter code comparing to CloudFormation, since all IAM roles are created automatically.
                                                 
                                                 Once you understand how service properties work, it is not a challenging task to deploy the architecture you want with AWS SAM. However, especially considering CloudFront properties there are a lot lines of code that you need to figure out the right way of writing.<br>
-                                                <img class="in-project-image" src="images/CloudFrontDistroSS.png">
+                                                <img class="in-project-image" src="images/CloudFrontDistroSS.png"><br>
                                                 <h4>Building Steps</h4>
+                                                <img class="in-project-image" alt="project1" src="images/Static-website-diagram.png">
                                                 <ul>
                                                     <li class="project-list">
                                                         After launching S3 and CloudFront with the required properties, uploaded my website code to S3 by using AWS CLI command; <br>

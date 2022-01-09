@@ -5,4 +5,4 @@
 __pycache__
 .env
 .vscode
-/Front-End/assets/webfonts
+/.Front-End/.assets/.webfonts

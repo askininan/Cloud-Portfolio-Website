@@ -155,10 +155,19 @@ input, select, textarea {
 		-ms-transition: color 0.2s ease, border-bottom 0.2s ease;
 		transition: color 0.2s ease, border-bottom 0.2s ease;
 		text-decoration: none;
-		border-bottom: dotted 1px;
 		color: inherit;
 	}
 
+	.text-link{		
+		-moz-transition: color 0.2s ease, border-bottom 0.2s ease;
+		-webkit-transition: color 0.2s ease, border-bottom 0.2s ease;
+		-ms-transition: color 0.2s ease, border-bottom 0.2s ease;
+		transition: color 0.2s ease, border-bottom 0.2s ease;
+		text-decoration: none;
+		border-bottom: dotted 1px;
+		color: inherit;
+	}
+	
 		a:hover {
 			border-bottom-color: transparent;
 		}
@@ -2132,6 +2141,7 @@ input, select, textarea {
 		.image img {
 			border-radius: 8px;
 			display: block;
+			border-bottom: none;
 		}
 
 		.image.left, .image.right {
@@ -2468,7 +2478,6 @@ input, select, textarea {
 /* Features */
 
 	.features {
-		
 		display: -moz-flex;
 		display: -webkit-flex;
 		display: -ms-flex;
@@ -2495,9 +2504,20 @@ input, select, textarea {
 			margin-top: 3em;
 			padding: 0;
 		}
-
+		.image-wrap{
+			align-items: center;
+			display: flex;
+			justify-content: center;
+			width: 14em;
+			height: 12em;
+		}
+		.image-thumbnail{
+			width: 100%;
+		}
 
 		.project-features{
+			justify-content: center;
+			align-content: center;
 			font-weight: 380;
 			margin-left: 8em;
 			margin-right: 8em;
@@ -2508,11 +2528,14 @@ input, select, textarea {
 		}
 
 		.features .project-features li{
-			background-color:#7ec3ee;
 			width: 400em;
 		}
 		
 		.in-project-image{
+			border-bottom: none;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
 			margin-top: 2em;
 			margin-bottom: 2em;
 		}
@@ -2530,6 +2553,7 @@ input, select, textarea {
 		}
 
 		.cert-icon{
+			border-bottom: none;
 			padding-top: 1em;
 			padding-bottom: 1em;
 			width: 200px;
@@ -2581,7 +2605,15 @@ input, select, textarea {
 					}
 		}
 
+		/* ---------------------PROJECTS SECTION--------------------- */
+
+.project-code{
+	background-color:rgb(211, 211, 211);
+	font-weight: 700;
+
+}
 /* Spotlight */
+
 
 	.spotlight {
 		display: -moz-flex;
@@ -2592,7 +2624,7 @@ input, select, textarea {
 		-webkit-align-items: center;
 		-ms-align-items: center;
 		align-items: center;
-		margin: 0 0 1em 0;
+		margin: -2em 0 1em 0;
 	}
 
 		.spotlight .content {
@@ -3486,17 +3518,7 @@ input, select, textarea {
 	}
 }
 
-/* ---------------------PROJECTS SECTION--------------------- */
 
-.image-thumbnail{
-    max-width: 13.5em;
-	border-radius: 3%;
-}
-.project-code{
-	background-color:rgb(211, 211, 211);
-	font-weight: 700;
-
-}
 
 /* ---------------------COUNTER CSS--------------------- */
 

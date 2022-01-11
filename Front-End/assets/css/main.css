@@ -2516,30 +2516,12 @@ input, select, textarea {
 			width: 100%;
 		}
 
-		.project-features{
-			justify-content: center;
-			align-content: center;
-			font-weight: 380;
-			margin-left: 8em;
-			margin-right: 8em;
-		}
-
-		.project-features h4{
-			font-weight: normal;
-		}
 
 		.features .project-features li{
 			width: 400em;
 		}
 		
-		.in-project-image{
-			border-bottom: none;
-			display: block;
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 2em;
-			margin-bottom: 2em;
-		}
+
 
 		.features li h3 {
 			font-weight: 800;
@@ -2608,11 +2590,54 @@ input, select, textarea {
 
 		/* ---------------------PROJECTS SECTION--------------------- */
 
-.project-code{
-	background-color:rgb(211, 211, 211);
-	font-weight: 700;
+	.project-features{
+		justify-content: center;
+		align-content: center;
+		font-weight: 380;
+		margin-left: 8em;
+		margin-right: 8em;
+	}
+		@media screen and (max-width: 980px) {
+			.project-features {
+				display: -moz-flex;
+				display: -webkit-flex;
+				display: -ms-flex;
+				display: flex;
+				-moz-justify-content: center;
+				-webkit-justify-content: center;
+				-ms-justify-content: center;
+				justify-content: center;
+				-moz-flex-wrap: wrap;
+				-webkit-flex-wrap: wrap;
+				-ms-flex-wrap: wrap;
+				flex-wrap: wrap;
+				width: calc(100% +2em);
+				margin: 0 2em 0 2em;
+				padding: 0;
+				list-style: none;
+			}
+		}
 
-}
+	.project-features h4{
+		font-weight: normal;
+	}
+
+	.in-project-image{
+		max-width: 100%; 
+		height: auto;
+		border-bottom: none;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 2em;
+		margin-bottom: 2em;
+	}
+
+	.project-code{
+		background-color:rgb(211, 211, 211);
+		font-weight: 700;
+
+	}
 /* Spotlight */
 
 
@@ -3359,32 +3384,28 @@ input, select, textarea {
 }
 
 .contact-container{
+	padding-left: 6em;
+	padding-right: 6em;
 	margin: auto;
-    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .contact-info{
-	margin-left: -10em;
 	padding-top: 5em;
     display: flex;
     flex-direction: column;
-    width: 45%;
+
 }
 
 .con-box{
-    margin-left:5%;
-    padding-left: 100em;
     display:flex;
-    padding: 20px 0;
 }
 
 .con-text{
     font-weight: 400;
     display: flex;
-    margin-left: 20px;
     font-size: 15px;
     flex-direction: column;
 }
@@ -3394,9 +3415,9 @@ input, select, textarea {
 }
 
 .Form{
-	margin-right: -12em;
-    width: 50%;
-    padding: 30px;
+	min-width: 300px;
+	max-width: 500px;
+	padding-left: 3em;
 }
 
 .input-box{
@@ -3440,13 +3461,18 @@ input, select, textarea {
 
 @media (max-width: 900px){
     .contact-container{
+		margin:auto;
         flex-direction: column;
     }
-	
+
 	.Form{
-		margin: auto;
+		padding-left: 0;
+		min-width: 300px;
         width: 100%;
     }
+	.contact-info{
+		padding-top: 1em;
+	}
 }
 /* ---------------------SKILLS PAGE--------------------- */
 

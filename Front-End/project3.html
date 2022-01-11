@@ -14,8 +14,8 @@
                 <!-- Nav -->
 					<nav id="nav">
 						<ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="#projects"active">Projects</a></li>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="projects.html">Projects</a></li>
 							<li><a href="#cta">Contact</a></li>
 						</ul>
 					</nav>
@@ -26,31 +26,28 @@
                             <div class="spotlight">
                                 <div class="content">
                                     <header class="major">
-                                        <h2>Projects</h2>
+                                        <h2>Cloud Resume Challenge - Part 2 - Back-End</h2>
                                     </header>
-									<ul class="features">
-										<li>
-											<div class="image-wrap">
-												<a href="project1.html"><img class="image-thumbnail" alt="project-thumbnail" src="images/Portfolio-Whole-Diagram.png"></a>
-											</div>
-											<h4><a href="project1.html">Cloud Resume Challenge - Part 1 - Frontend</a></h4>
-											<p>Deploying a static and secure website with AWS SAM as IaC</p>
-										</li>
-										<li>
-											<div class="image-wrap">
-												<a href="project2.html"><img class="image-thumbnail" alt="project-thumbnail" src="images/Portfolio-Backend-Diagram.png"></a>
-											</div>
-											<h4><a href="project2.html" lass=text-link>Cloud Resume Challenge - Part 2 - Back-end</a></h4>
-											<p>Developing the visitor counter by using python, javascript, API, Lambda and DynamoDB</p>
-										</li>
-										<li>
-											<div class="image-wrap">
-												<a href="project3.html"><img class="image-thumbnail" alt="project-thumbnail" src="images/Portfolio-Whole-CICD.png"></a>
-											</div>
-											<h4><a href="project3.html" lass=text-link>Cloud Resume Challenge - Part 3 - CI / CD</a></h4>
-											<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat. Verify this certificate here.</p>
-										</li>
-                                    </ul>
+                                        <div class="project-features">
+                                            
+                                            <p>
+                                                At this part, I will cover developing the visitor counter by using python, javascript, API and AWS SAM for deployment of services.
+                                                <img class="in-project-image" alt="project1" src="images/Portfolio-Backend-Diagram.png">
+                                                
+                                                <h4>Cloud Resume Challenge - Part 2 - Backend</h4>
+                                                
+                                                For visitor counter, I needed to use a variety of AWS services. A database to contain visitor number and a Lambda function to increment the number upon visits that triggers the function. To finish up the template, also needed a rest API to tie them all.
+                                                
+                                                The yaml deployment is the easier part for this challenge, I deployed a DynamoDB table by a short code snippet and created a Lambda resource adding API (/get method) event to trigger the function and eventually tying it to the counter table to increment the number.<br>
+
+                                                <br>You need to leverage boto3 library on Python to create the actual function to increment and update the number on DynamoDB table. Moreover, you need to add a script in your HTML file to fetch the API response of your API Gateway. Then you will be able to see the visitor count on your website.
+                                                <img class="in-project-image" alt="project1" src="images/APIFetchCodeSnippet.png"><br>
+
+                                                <h4>Final Thoughts</h4>
+                                                
+                                                The most challenging part of this project for me was to figure out CORS error I’ve been getting from my API. Turns out, the solution was easy using the AWS console, but as I wanted to manage all in code, I needed to add some header specifications to my API response. 
+                                                <img class="in-project-image" alt="project1" src="images/APIReturnCodeSnippet.png"><br>
+                                                All in all, it was a good learning experience regarding rest APIs and HTTP headers.</p><br>
                                 </div>
                             </div>
                         </section>

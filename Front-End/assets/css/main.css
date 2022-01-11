@@ -2505,6 +2505,7 @@ input, select, textarea {
 			padding: 0;
 		}
 		.image-wrap{
+			margin-bottom: 1em;
 			align-items: center;
 			display: flex;
 			justify-content: center;

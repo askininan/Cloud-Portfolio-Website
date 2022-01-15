@@ -16,7 +16,7 @@
 					<header id="header" class="alt">
 						<div class="profile-general">
 							<div class="profile-content">
-								<img id="profile-pic" alt="Aşkın İnan" src="images/Aşkın-Portfolio.jpeg">
+								<img id="profile-pic" alt="Aşkın İnan" src="images/profile-pic.JPG">
 								<h1 class="profile-name">
 									Aşkın<br>İnan
 								</h1>
@@ -54,7 +54,7 @@
 										<header class="major">
 											<h2>About Me</h2>
 										</header>
-										<p>I am a AWS Cloud Architect with passion for leveraging my diversified background to decode challenging problems and create well-architected infrastructures in Cloud.<br>
+										<p>I am an AWS certified Solutions Architect with passion for leveraging my diversified background to decode challenging problems and create well-architected infrastructures in Cloud.<br>
 										<br>Self-learner, well-organized person, self-reliant responsible employee with high attention to detail. Interested in the entire Cloud spectrum including IaC, Serverless, and Security and the thing that ties it all together; coding.</p>
 										<ul class="actions">
 											<li><a href="generic.html" class="button">My Resume</a></li>
@@ -118,7 +118,7 @@
 							
 											<div class="skill-wrapper">
 												<h4>Linux - BASH</h4>
-												<p>Finished <a href="#" class=text-link>Complete Linux Training Course</a> (34 hours), in which taught essentials of Linux from system administration to networking, shell-scripting and disk management on CentOS distro. 
+												<p>Finished <a href="https://www.udemy.com/certificate/UC-f9f64227-06a2-4d99-b435-990bf33ab07f/" class=text-link>Complete Linux Training Course</a> (34 hours), in which taught essentials of Linux from system administration to networking, shell-scripting and disk management on CentOS distro. 
 													Furthermore, I accustom daily usage of Git Bash, AWS CLI, and Bash on my Mac.</p>
 											</div>
 											<h4>Other Skills</h4>
@@ -198,7 +198,7 @@
 											<section>
 												<dl class="alt">
 													<dt>E-mail:</dt>
-													<dd><a href="#">askin.inan@outlook.com</a></dd>
+													<dd>askin.inan@outlook.com</dd>
 													<dt>Location:</dt>
 													<dd>Istanbul, Turkey</dd>
 												</dl>
@@ -209,16 +209,17 @@
 											</section>
 										</div>
 									</div>
+									<!--Form Section-->
 									<div class=Form>
-										<form id="form" onsubmit="return false">
+										<form id="form" action="https://formspree.io/f/xbjwdgoe" method="POST">
 											<h2>Send a Message</h2>
 											<div class="input-box">
-												<input type="text" name="name" placeholder="Full Name" required>
-												<input type="text" name="email" placeholder="E-mail" required>
-												<textarea name="message" required placeholder="Write your message..."></textarea>
+												<input type="text" name="name" class="name" placeholder="Full Name" required>
+												<input type="text" name="email" class="email" placeholder="E-mail" required>
+												<textarea name="message" class="message" required placeholder="Write your message..."></textarea>
 											</div>
 											<div class="send-button">
-												<button type="submit" value="Send">Send</button>
+												<button type="submit" value="Send" class="submit">Send</button>
 											</div>
 										</form>
 									</div>
@@ -253,6 +254,7 @@
 			</div>
 
 		<!-- Scripts -->
+			<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 			<script src="https://smtpjs.com/v3/smtp.js"></script>
 			<script src="assets/js/form.js"></script>
 			<script src="assets/js/jquery.min.js"></script>

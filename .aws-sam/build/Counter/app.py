@@ -2,7 +2,6 @@ import json
 import boto3
 import os
 
-
 def lambda_handler(event, context):
     # Initialize dynamodb boto3 object
     dynamodb = boto3.resource('dynamodb')
@@ -38,3 +37,5 @@ def lambda_handler(event, context):
     }
     # Return api response object
     return response
+    
+

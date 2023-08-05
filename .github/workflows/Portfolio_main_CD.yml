@@ -16,10 +16,10 @@ jobs:
         with:
           python-version: 3.8
       - uses: aws-actions/setup-sam@v1
-      - uses: aws-actions/configure-aws-credentials@v1
+      - uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ASKININAN_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_ASKININAN_SECRET_ACCESS_KEY }}
+          role-to-assume: arn:aws:iam::526450518584:role/S3+CloudFormation_Access
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: eu-central-1
       
 

@@ -11,3 +11,4 @@ capabilities = "CAPABILITY_IAM"
 disable_rollback = true
 image_repositories = []
 parameter_overrides = "DomainName=\"askininan.com\""
+resolve_s3 = true

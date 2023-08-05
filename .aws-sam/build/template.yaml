@@ -118,6 +118,8 @@ Resources:
       - DynamoDBCrudPolicy:
           TableName:
             Ref: ResumeCounterTable
+    Metadata:
+      SamResourceId: Counter
   APIUsagePlan:
     Type: AWS::ApiGateway::UsagePlan
     Properties:

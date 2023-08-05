@@ -18,8 +18,8 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - uses: aws-actions/setup-sam
-      - uses: aws-actions/configure-aws-credentials
+      - uses: aws-actions/setup-sam@v1
+      - uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::526450518584:role/S3+CloudFormation_Access
           aws-region: eu-central-1

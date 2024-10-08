@@ -31,7 +31,7 @@
                             <div class="project-features">
                                 <p>
                                     <h4>Prologue</h4>
-                                    For this project we will deploy an EKS cluster on AWS by using Terraform code as IaC. The EKS will reside on a custom created VPC on two Availability Zone at eu-central-1. 
+                                    For this project we will deploy a highly available VPC on AWS by using Terraform code as IaC. After completing VPC deployment we will deploy EKS as our next project, so some configurations will be set specifically for EKS. The VPC will reside on two Availability Zone at eu-central-1. 
                                     This VPC will have two public and two private subnets. Each public and private subnets will be deployed on different AZs, for maximum availability. 
                                     This argument allows you to deploy your nodes to private subnets and allows Kubernetes to deploy load balancers to public subnets that can load balance traffic to pods running on nodes in the private subnets.<br>
                                     <br>
@@ -44,13 +44,13 @@
                                     <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/tf-provider.png"><br>
                                     <br>
                                     <h4>VPC</h4>
-                                    Before deploying EKS we will deploy a VPC and add the subnets with two different availability zones as described in the prologue. While creating VPC resource itself, you need to create a CIDR block, for example: cidr_block = "192.168.0.0/16". Further, dns support and hostnames argumentss should be marked true as they are necessary for EKS. After creating VPC resource, I also included a "vpc_id" output variable as we will use it to attach network elements like internet gateway and subnets to our VPC, "value = aws_vpc.main.id".<br>
+                                    After deploying a VPC, we will add the subnets with two different availability zones as described in the prologue. While creating VPC resource itself, you need to create a CIDR block, for example: cidr_block = "192.168.0.0/16". Further, dns support and hostnames argumentss should be marked true as they are necessary for EKS. After creating VPC resource, I also included a "vpc_id" output variable as we will use it to attach network elements like internet gateway and subnets to our VPC, "value = aws_vpc.main.id".<br>
                                     <br>
                                     <h4>Internet Gateway</h4>
                                     Next, deploy an internet gateway to be able to communicate with outer world. It is fairly easy, you just need to mention the vpc_id to attach it to the VPC main. After that, we will create two public, two private subnets to sit on two seperate availability zones.<br>
                                     <br>
                                     <h4>Subnets</h4>
-                                    We will create a public subnet at first in eu-central-1a zone. We will mention a CIDR block which will be a part of our VPC CIDR "cidr_block = "192.168.0.0/18". An EKS required argument map_public_ip_on_launch = true will be included, which makes mandatory for instances launched into the public subnet to have public IP addresses. In our case, we will only use public subnets to deploy public Load Balancers. Lastly, we will mention a few tags which we will use later on for EKS.
+                                    We will create a public subnet at first in eu-central-1a zone. We will mention a CIDR block which will be a part of our VPC CIDR "cidr_block = "192.168.0.0/18". An EKS required argument map_public_ip_on_launch = true will be included, which makes mandatory for instances launched into the public subnet to have public IP addresses. In our case, we will only use public subnets to deploy public Load Balancers on our next project. Lastly, we will mention a few tags which we will use later on for EKS.
                                     <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/subnet-tag.png">
                                     The argument "kubernetes.io/cluster/eks" = "shared" lets EKS to discover this particular subnet and use it. ""kubernetes.io/role/elb" = 1" argument is for EKS to be able to deploy load balancers to this public subnet. After all, our first public subnet looks like this:
                                     <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/subnet-public.png">

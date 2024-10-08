@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Aşkın İnan Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+                <!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="projects.html">Projects</a></li>
+							<li><a href="#cta">Contact</a></li>
+						</ul>
+					</nav>
+				<!-- Main -->
+					<div id="main">
+                        <!-- Content -->
+                        <section id="projects" class="main">
+                            <div class="spotlight">
+                                <div class="content">
+                                    <header class="major">
+                                        <h2>Setup Highly Available AWS VPC with Private & Public Subnets by Terrafom</h2>
+                                    </header>
+                            <div class="project-features">
+                                <p>
+                                    <h4>Prologue</h4>
+                                    For this project we will deploy an EKS cluster on AWS by using Terraform code as IaC. The EKS will reside on a custom created VPC on two Availability Zone at eu-central-1. 
+                                    This VPC will have two public and two private subnets. Each public and private subnets will be deployed on different AZs, for maximum availability. 
+                                    This argument allows you to deploy your nodes to private subnets and allows Kubernetes to deploy load balancers to public subnets that can load balance traffic to pods running on nodes in the private subnets.<br>
+                                    <br>
+                                    <h4>Project Architecture</h4>
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/VPC-arch.png"><br>
+                                    <h4>Provider</h4>
+                                    It is recommended for each production project to have a new user and user_group with least privileged access. Make sure the new user has programatic access.
+                                    After creating new user, download it's credentials and add those credentials to your aws config by "aws configure --profile -profile_name-". If you do not use --profile option, the new user will will be configured as "default" profile.<br>
+                                    For terraform to interact our AWS account, firstly we need to create out provider.tf file. Create new file in your project as and add the aws provider.
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/tf-provider.png"><br>
+                                    <br>
+                                    <h4>VPC</h4>
+                                    Before deploying EKS we will deploy a VPC and add the subnets with two different availability zones as described in the prologue. While creating VPC resource itself, you need to create a CIDR block, for example: cidr_block = "192.168.0.0/16". Further, dns support and hostnames argumentss should be marked true as they are necessary for EKS. After creating VPC resource, I also included a "vpc_id" output variable as we will use it to attach network elements like internet gateway and subnets to our VPC, "value = aws_vpc.main.id".<br>
+                                    <br>
+                                    <h4>Internet Gateway</h4>
+                                    Next, deploy an internet gateway to be able to communicate with outer world. It is fairly easy, you just need to mention the vpc_id to attach it to the VPC main. After that, we will create two public, two private subnets to sit on two seperate availability zones.<br>
+                                    <br>
+                                    <h4>Subnets</h4>
+                                    We will create a public subnet at first in eu-central-1a zone. We will mention a CIDR block which will be a part of our VPC CIDR "cidr_block = "192.168.0.0/18". An EKS required argument map_public_ip_on_launch = true will be included, which makes mandatory for instances launched into the public subnet to have public IP addresses. In our case, we will only use public subnets to deploy public Load Balancers. Lastly, we will mention a few tags which we will use later on for EKS.
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/subnet-tag.png">
+                                    The argument "kubernetes.io/cluster/eks" = "shared" lets EKS to discover this particular subnet and use it. ""kubernetes.io/role/elb" = 1" argument is for EKS to be able to deploy load balancers to this public subnet. After all, our first public subnet looks like this:
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/subnet-public.png">
+                                    Next we will deploy our second public subnet, mostly copying the first one but we need to change the CIDR block and change it's AZ to "eu-central-1b". The CIDR block will be "192.168.64.0/18" as our first subnet ends at "192.168.63.255". You can calculate the last IP of the CIDR block yourself or you can use websites like cidr.xyz to make that calculation for you but you need to make sure those CIDR blocks to not to intersect with each other.
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/cidr-calc.png">
+                                    We will deploy two private subnets as well. They will look pretty much like public subnets but with few differences. First of all we will use next CIDR blocks to prevent intersection just as we did for public subnets. Private subnet1 will be in the same AZ with public subnet1, which is eu-central-1a, and private subnet2 will be in the same AZ with public subnet2, which is eu-central-1b. Elb-role will change to internal-elb. 
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/private-subnets.png">
+                                    Right now, they are not really private and public subnets as their names state, we will need to create NAT Gateways and make the proper routing for them to determine their functionalities.<br>
+                                    <br>
+                                    <h4>NAT Gateways</h4>
+                                    We will deploy two NAT Gateways to each for each AZs for high availability. Also we will assigned an elastic IP address for each of those NAT Gateways.
+                                    First we create the Elastic IP Addresses. We need to 'depends_on = [ aws_internet_gateway.main ]' argument as the Elastic IPs should not be created prior to the creation of our IGW.
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/eips.png">
+                                    Secondly we will create two NAT Gateways on two availability zones. To attach our elastic IPs we will mention as "allocation_id = aws_eip.nat1.id".<br>
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/natgw.png">
+                                    After deploying NAT Gateways and Elastic IPs, we should check them through the console and make sure those Elastic IPs are actually assigned.<br>
+                                    <br>
+                                    <h4>Route Tables</h4>
+                                    In my opinion, creating the route tables with the correct routes is the most tricky part for this project. As first I deployed a VPC, it comes with a route table which is our main route. <br>
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/vpc-mainroute.png">
+                                    VPC's main route table (means that traffic won't leave your VPC)
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/mainroute-table.png">
+                                    Other that this main route table we will have three more tables for public, private and VPC peering. 
+                                    Public route table: It is the public route for our public subnets to reach internet gateway and to the internet.
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/publicroute-arch.png">
+                                    
+                                    <h4>Public Route Table</h4>
+                                    This route table will be associate with our public subnets targeting our Internet Gateway. It for public subnets to reach out internet.
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/route-tables-public.png"><br>
+                                    <h4>Private Route Table</h4>
+                                    These route tables will be associate with our private subnets, which will target separate NAT gateways for high availability. 
+                                    <img class="in-project-image" alt="project4" src="images/Proj-VPC-TF/route-tables-private.png">
+                                    After deploying the route tables, check from AWS console that the VPC has to have total four routing tables, one as main route table, one for public subnets and two for private subnets.
+                                </p>
+
+                            </div>
+					
+                        </section>
+			
+					<!-- Contact Page -->
+						<section id="cta" class="main special">
+							<header class="major">
+								<h2>Contact Me</h2>
+								<p>I'm interested in new career opportunities. If you have any enquiries, feel free to contact me.</p>
+							</header>
+							<div class="contact-page">
+								<!-- Intro of contact page -->
+								<!-- Contact Info Frames -->
+								<div class="contact-container">
+									<div class="contact-info">
+										<div class="con-box">
+											<section>
+												<dl class="alt">
+													<dt>E-mail:</dt>
+													<dd><a href="#">askin.inan@outlook.com</a></dd>
+													<dt>Location:</dt>
+													<dd>Istanbul, Turkey</dd>
+												</dl>
+												<ul class="icons">
+													<li><a href="https://github.com/askininan" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+													<li><a href="https://www.linkedin.com/in/askin-inan/" class="icon brands fa-linkedin alt"><span class="label">Linkedin</span></a></li>
+												</ul>
+											</section>
+										</div>
+									</div>
+									<div class=Form>
+										<form id="form" onsubmit="return false">
+											<h2>Send a Message</h2>
+											<div class="input-box">
+												<input type="text" name="name" placeholder="Full Name" required>
+												<input type="text" name="email" placeholder="E-mail" required>
+												<textarea name="message" required placeholder="Write your message..."></textarea>
+											</div>
+											<div class="send-button">
+												<button type="submit" value="Send">Send</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</section>
+			</div>		
+			<!--Counter Section-->
+						<section class="counter-section">
+							<div class="counter-container">
+								<div class="counter-text"><h5>You are</h5></div>
+								<div id='counterBody' class="counter-body"></div>
+									<script>
+										fetch("https://ab13fsks3a.execute-api.eu-central-1.amazonaws.com/Prod/get")
+											.then(response => response.json())
+											.then(data =>{
+												document.getElementById('counterBody').innerHTML = data        
+										console.log(data);
+											});
+									</script>
+									<h5 class="th-visitor">th visitor.</h5>
+							</div>
+						</section>  
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Askin Inan 2022</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="https://smtpjs.com/v3/smtp.js"></script>
+			<script src="assets/js/form.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

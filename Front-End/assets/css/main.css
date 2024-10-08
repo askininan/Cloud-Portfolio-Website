@@ -2633,6 +2633,17 @@ input, select, textarea {
 		margin-bottom: 2em;
 	}
 
+	.in-project-image-small{
+		max-width: 100%; 
+		height: auto;
+		border-bottom: none;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 2em;
+		margin-bottom: 2em;
+	}
+
 	.project-code{
 		background-color:rgb(211, 211, 211);
 		font-weight: 700;

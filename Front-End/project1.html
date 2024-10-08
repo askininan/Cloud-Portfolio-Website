@@ -68,13 +68,14 @@
                                                 </ul>    
                                                 
                                                 <h4>Final Thoughts on Part 1</h4>
-                                                Over this part, I have accomplished to deploy a website leveraging IaC tool AWS SAM, and faced several challenging occasions while trying to resolve exact 
+                                                Over this part, I have accomplished to deploy a website leveraging IaC tool AWS SAM (AWS Native IaC), and faced several challenging occasions while trying to resolve exact 
                                                 specifications required for each service. I’ve spent good amount of time to figure out the right AliasTarget for my CloudFront distribution to associate with my Route 53 record, 
                                                 that is until I read that every distribution was in the same general AWS hosted zone.<br>
                                                 
                                                 <br>Getting an SSL certificate working was a challenge all by itself, which should be an easy process at first glance. Firstly, I had issues with validating the certificate because I had previously 
                                                 deleted my original DNS record for my registered domain name, so I had to find out how the validation process really works. After that, I found out that to use an ACM certificate with CloudFront, you cannot issue a certificate in any other region than us-east-1. <br>
-                                                <br>With the lessons learned, that was the end of Part One. Please, check Part Two for the process of creating a functioning visitor counter with Lambda and API Gateway.</p><br>
+                                                <br>With the lessons learned, that was the end of Part One. Please, check Part Two for the process of creating a functioning visitor counter with Lambda and API Gateway.
+											</p><br>
 												<div class="spotlight">
 													<div class="content">
 												<ul class="actions">
